@@ -8,42 +8,14 @@ class Solution
     public:
     vector<int> find(int arr[], int n , int x )
     {
-        int left = 0;
-        int right = n-1;
-        int first = -1, last = -1;
-        
-        while(left<=right){
-            int mid = left + (right-left)/2;
-            if(arr[mid]<x){
-                left = mid+1;
-            }
-            else if(arr[mid]>x){
-                right = mid-1;
-            }
-            else{
-                first = mid;
-                right = mid-1;
-            }
+        if(binary_search(arr,arr+n,x) == false){
+            return {-1,-1};
         }
         
-        left = 0;
-        right = n-1;
+        int first = lower_bound(arr,arr+n,x) - arr;
+        int last = upper_bound(arr, arr+n, x) - arr - 1;
         
-        while(left<=right){
-            int mid = left + (right-left)/2;
-            if(arr[mid]<x){
-                left = mid+1;
-            }
-            else if(arr[mid]>x){
-                right = mid-1;
-            }
-            else{
-                last = mid;
-                left = mid+1;;
-            }
-        }
-        
-        return {first,last};
+        return {first, last};
     }
 };
 
