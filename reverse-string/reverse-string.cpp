@@ -1,16 +1,14 @@
 class Solution {
-private:
-    void stringhelp(int i, int j, vector<char> &s){
-        if(i>=j){
+public:
+    void rev(vector<char>& s, int i, int n){
+        if(i >= n/2){
             return;
         }
-        swap(s[i], s[j]);
-        stringhelp(i+1, j-1, s);
+        swap(s[i], s[n-i-1]);
+        rev(s, i+1, n);
     }
-public:
     void reverseString(vector<char>& s) {
         int n = s.size();
-        int i = 0, j = n-1;
-        stringhelp(i,j,s);
+        rev(s, 0, n);
     }
 };
